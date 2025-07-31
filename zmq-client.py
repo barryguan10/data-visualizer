@@ -9,7 +9,7 @@ socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
 data = {
-    "chart_type": "graph",
+    "chart_type": "pie",
     "data": {
         "headers": ["mimetype","count"],
         "rows": [

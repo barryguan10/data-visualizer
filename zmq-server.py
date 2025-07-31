@@ -9,6 +9,7 @@ context = zmq.Context()
 socket = context.socket(zmq.REP)
 socket.bind("tcp://*:5555")
 
+
 print("Server is awaiting JSON...")
 
 while True:
@@ -19,8 +20,7 @@ while True:
 
     headers = data["data"]["headers"]
     rows = data["data"]["rows"]
-    print(headers)
-    print(rows)
+    
     if len(headers) != 2:
         socket.send_string("Incorrect number of headers. Please check that the input JSON has 2 headers.")
     elif len(rows[0]) != 2:
@@ -69,4 +69,3 @@ while True:
 
     else:
         socket.send_string("Unsupported Chart Type")
-
