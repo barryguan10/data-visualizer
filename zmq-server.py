@@ -12,6 +12,7 @@ socket.bind("tcp://*:5555")
 
 print("Server is awaiting JSON...")
 
+directory = "plots"
 while True:
     message = socket.recv_string()
     data = json.loads(message)
@@ -34,7 +35,7 @@ while True:
         #plt.figure()
         plt.pie(counts, labels=labels, autopct= '%1.1f%%')
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        fileName = "plots/pie_chart_"+timestamp+".png"
+        fileName = directory+"/pie_chart_"+timestamp+".png"
         plt.savefig(fileName)
         plt.close()
         socket.send_string("Pie Chart Saved")
@@ -48,7 +49,7 @@ while True:
         plt.xlabel(headers[0])
         plt.ylabel(headers[1])
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        fileName = "plots/bar_chart_"+timestamp+".png"
+        fileName = directory+"/bar_chart_"+timestamp+".png"
         plt.savefig(fileName)
         plt.close()
         socket.send_string("Bar Chart Saved")
@@ -62,7 +63,7 @@ while True:
         plt.xlabel(headers[0])
         plt.ylabel(headers[1])
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        fileName = "plots/bar_chart_"+timestamp+".png"
+        fileName = directory+"/line_chart_"+timestamp+".png"
         plt.savefig(fileName)
         plt.close()
         socket.send_string("Line Chart Saved")

@@ -1,5 +1,4 @@
 import zmq
-import time
 import json
 
 
@@ -9,7 +8,7 @@ socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
 data = {
-    "chart_type": "pie",
+    "chart_type": "bar",
     "data": {
         "headers": ["mimetype","count"],
         "rows": [
