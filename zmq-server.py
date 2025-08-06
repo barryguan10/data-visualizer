@@ -32,13 +32,12 @@ while True:
         labels = [row[0] for row in rows]
         counts = [row[1] for row in rows]
 
-        #plt.figure()
         plt.pie(counts, labels=labels, autopct= '%1.1f%%')
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         fileName = directory+"/pie_chart_"+timestamp+".png"
         plt.savefig(fileName)
         plt.close()
-        socket.send_string("Pie Chart Saved")
+        socket.send_string("Pie Chart Saved:"+fileName)
 
     elif data.get("chart_type") == "bar":
 
@@ -52,7 +51,7 @@ while True:
         fileName = directory+"/bar_chart_"+timestamp+".png"
         plt.savefig(fileName)
         plt.close()
-        socket.send_string("Bar Chart Saved")
+        socket.send_string("Bar Chart Saved:"+fileName)
 
     elif data.get("chart_type") == "graph":
 
@@ -66,7 +65,7 @@ while True:
         fileName = directory+"/line_chart_"+timestamp+".png"
         plt.savefig(fileName)
         plt.close()
-        socket.send_string("Line Chart Saved")
+        socket.send_string("Line Chart Saved:"+fileName)
 
     else:
         socket.send_string("Unsupported Chart Type")
